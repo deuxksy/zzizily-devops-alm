@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+
+  adminer:
+    image: adminer:4.8.0-standalone
+    container_name: adminer
+    restart: always
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+    depends_on:
+      - mariadb
+    ports:
+      - 8080:8080
+
+  mariadb:
+    image: mariadb:10.59
+    container_name: mariadb
+    restart: 'always'
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes: 
+      - ./maria/data:${MARIADB_DATA_DIR}
+      - ./maria/logs:${MARIADB_LOG_DIR}
+      - ./maria/etc:/etc/mysql

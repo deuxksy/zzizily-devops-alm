@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  squid:
+    image: sameersbn/squid:3.5.27-2
+    restart: always
+    container_name: squid-3
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid/squid.conf:/etc/squid/squid.conf
+      - ./squid/cache:/var/spool/squid

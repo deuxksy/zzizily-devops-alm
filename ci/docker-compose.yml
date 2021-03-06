@@ -1,0 +1,23 @@
+version: "3.7"
+
+# volumes:
+#   blueocean_data:
+
+services:
+  jenkins:
+    image: jenkinsci/blueocean:1.24.4
+    restart: always
+    container_name: jenkins-blueocean
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+      # JENKINS_OPTS: --httpPort=-1 --httpsPort=8443 --httpsKeyStore=/var/lib/jenkins/ssl/letsencrypt.jks --httpsKeyStorePassword=tricycle1@
+    ports:
+      - "80:8080"
+      - "443:8443"
+      - "50000:50000"
+    volumes:
+      - ./jenkins/home:/var/jenkins_home
+      # - ~/.aws:/var/jenkins_home/.aws
+      # - ./ssl:/var/lib/jenkins/ssl:ro
+      # - /var/run/docker.sock:/var/run/docker.sock

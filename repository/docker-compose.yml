@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  nexus:
+    image: bradbeck/nexus-https:3.29.2
+    restart: always
+    container_name: nexus3
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+      # PUBLIC_CERT: /opt/sonatype/nexus/etc/ssl/cert1.pem
+      # PRIVATE_KEY: /opt/sonatype/nexus/etc/ssl/privkey1.pem
+      # PRIVATE_KEY_PASSWORD: 
+    ports:
+      - "80:8081"
+      - "443:8443"
+    volumes:
+      # - ./ssl:/opt/sonatype/nexus/etc/ssl
+      - ./nexus/data:/nexus-data

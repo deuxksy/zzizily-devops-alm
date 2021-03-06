@@ -1,0 +1,39 @@
+  
+version: "3.7"
+
+# volumes:
+#   vol_ce_data:
+
+services:
+  web:
+    image: "gitlab/gitlab-ce:13.9.2-ce.0"
+    restart: always
+    hostname: localhost
+    container_name: gitlab-ce
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+      # GITLAB_OMNIBUS_CONFIG: |
+      #   external_url "https://"
+      #   gitlab_rails["gitlab_shell_ssh_port"] = 10022
+      #   gitlab_rails['time_zone'] = 'Asia/Seoul'
+      #   nginx["listen_port"] = 443
+      #   # nginx["ssl_certificate"] = "/etc/ssl/certs/gitlab/cert1.pem"
+      #   # nginx["ssl_certificate_key"] = "/etc/ssl/certs/gitlab/privkey1.pem"
+      #   gitlab_rails["smtp_enable"] = true
+      #   gitlab_rails["smtp_address"] = ""
+      #   gitlab_rails["smtp_port"] = 25
+      #   gitlab_rails["smtp_user_name"] = ""
+      #   gitlab_rails["smtp_password"] = ""
+      #   gitlab_rails["smtp_domain"] = ""
+      #   gitlab_rails["smtp_authentication"] = "login"
+      #   gitlab_rails["gitlab_email_from"] = ""
+    ports:
+      - "80:80"
+      - "443:443"
+      - "10022:22"
+    volumes:
+      - "./gitlab/etc:/etc/gitlab"
+      - "./gitlab/logs/var/log/gitlab"
+      - "./gitlab/opt:/var/opt/gitlab"
+      - "./gitlab/backups:/var/opt/gitlab/backups"

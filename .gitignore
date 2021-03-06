@@ -1,1 +1,7 @@
-dns/data/
+ci/jenkins/
+db/maria/
+dns/bind/
+issue/yona/
+proxy/squid/
+repository/nexus/
+version/gitlab/
