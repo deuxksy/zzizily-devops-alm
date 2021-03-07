@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  bind:
+    container_name: dns_bind
+    restart: always
+    image: sameersbn/bind:9.16.1-20200524
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+      ROOT_PASSWORD: secretpassword
+    ports:
+    - "53:53/udp"
+    - "53:53/tcp"
+    - "10000:10000/tcp"
+    volumes:
+    - "./data:/data"
