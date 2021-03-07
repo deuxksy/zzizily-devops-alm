@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  haproxy:
+    build: .
+    image: haproxy:lts
+    restart: always
+    container_name: haproxy-lts
+    environment:
+      TZ: Asia/Seoul
+      LANG: ko_KR.UTF-8
+    ports:
+      - "80:80"
+    volumes:
+      - "./etc/haproxy:/usr/local/etc/haproxy:ro"

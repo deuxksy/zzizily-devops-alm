@@ -1,7 +1,7 @@
-ci/jenkins/
-db/maria/
-dns/bind/
-issue/yona/
-proxy/squid/
-repository/nexus/
-version/gitlab/
+ci/jenkins
+db/mariadb
+dns/bind
+# issue/yona
+# proxy/
+# repository/
+# version/
