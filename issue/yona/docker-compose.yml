@@ -5,6 +5,8 @@ services:
     build: .
     image: pokev25/yona:1.14.0
     restart: always
+    depends_on:
+      - mariadb
     links:
       - mariadb
     environment:
@@ -15,7 +17,8 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - ./yona/data:/yona/data
+      - ./yona/conf:/yona/data/conf
+      - ./yona/logs:/yona/data/logs
 
   mariadb:
     image: mariadb:10.5.9
@@ -23,22 +26,25 @@ services:
     environment:
       TZ: Asia/Seoul
       LANG: ko_KR.UTF-8
-      MYSQL_ROOT_PASSWORD: yonapassword
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: yona
       MYSQL_USER: yona
-      MYSQL_PASSWORD: yonadan
+      MYSQL_PASSWORD: password
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     ports: 
       - 3306:3306 
     volumes: 
-      - ./mysql/data:/var/lib/mysql/data
-      - ./mysql/etc:/etc/mysql
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/etc/conf.d:/etc/mysql/conf.d
+      - ./mysql/etc/mariadb.conf.d:/etc/mysql/mariadb.conf.d
 
   adminer:
     image: adminer:4.8.0-standalone
     restart: always
+    depends_on:
+      - mariadb
     environment:
       TZ: Asia/Seoul
       LANG: ko_KR.UTF-8
