@@ -1,7 +1,7 @@
 # ci/jenkins
 # db/mariadb
 dns/bind/data
-# issue/yona
+issue/yona/mysql/data
 # proxy/
 # repository/
 # version/
